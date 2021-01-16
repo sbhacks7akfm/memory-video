@@ -1,0 +1,31 @@
+{
+  "name": "Memory Builder",
+  "short_name": "MemBuild",
+  "theme_color": "#D39494",
+  "background_color": "#F7C6C6",
+  "icons": [
+    {
+        "src": "/static/images/icon-64.PNG",
+        "type": "image/png",
+        "sizes": "64x64"
+      },
+      {
+        "src": "/static/images/icon-96.PNG",
+        "type": "image/png",
+        "sizes": "96x96"
+      },
+      {
+        "src": "/static/images/icon-192.PNG",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/static/images/icon-512.PNG",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
