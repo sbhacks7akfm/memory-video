@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
+@app.route("/home")
 def home():
     return render_template('home.html')
 
@@ -17,11 +18,14 @@ def tryourservice():
 
 @app.route("/tryourservice", methods=['POST'])
 def upload_file():
+    for file in os.listdir("./static/original/"):
+        os.remove("./static/original/" + file)
     uploaded_file = request.files.getlist("file")
     print(uploaded_file)
-    if len(uploaded_file) == 0:
-        uploaded_file.save(uploaded_file.filename)
-    return redirect(url_for('tryourservice'))
+    if len(uploaded_file) != 0:
+        for file in uploaded_file:
+            file.save("./static/original/" + file.filename)
+    return redirect(url_for('maps'))
 
 
 @app.route("/aboutus")
