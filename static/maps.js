@@ -37,9 +37,13 @@ function movement(image) {
   modal.style.display = "block";
   modalImg.src = img.src;
   captionText.innerHTML = img.alt;
+  if(modalImg.height > window.innerHeight-50 || modalImg.width > window.innerWidth-50) {
+    modalImg.height /= 2;
+    modalImg.width /= 2;
+  }
   setTimeout(() =>{
     modal.style.display = "none";
-  }, 9000);
+  }, 3000);
 }
 
 imageData.forEach((image, i) => {
@@ -53,6 +57,6 @@ imageData.forEach((image, i) => {
   } else {
     setTimeout(() => {
       movement(image);
-    }, 10000*i);
+    }, 5000*i);
   }
 });

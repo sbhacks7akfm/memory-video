@@ -20,6 +20,8 @@ def tryourservice():
 def upload_file():
     uploaded_file = request.files.getlist("file")
     print(uploaded_file)
+    int i = 0
+    for i in
     if len(uploaded_file) != 0:
         uploaded_file.save(uploaded_file.filename)
     return redirect(url_for('tryourservice'))
