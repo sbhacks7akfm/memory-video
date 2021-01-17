@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 
@@ -15,10 +15,11 @@ def tryourservice():
 
 @app.route("/tryourservice", methods=['POST'])
 def upload_file():
-    uploaded_file = request.files.get('file')
-    if uploaded_file.filename != '':
+    uploaded_file = request.files.getlist("file")
+    print(uploaded_file)
+    if len(uploaded_file) == 0:
         uploaded_file.save(uploaded_file.filename)
-    return redirect(url_for('index'))
+    return redirect(url_for('tryourservice'))
 
 
 @app.route("/aboutus")
