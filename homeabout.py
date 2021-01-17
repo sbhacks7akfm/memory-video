@@ -15,6 +15,14 @@ def tryourservice():
     return render_template('tryourservice.html')
 
 
+@app.route("/tryourservice", methods=['POST'])
+def upload_file():
+    uploaded_file = request.files.get('file')
+    if uploaded_file.filename != '':
+        uploaded_file.save(uploaded_file.filename)
+    return redirect(url_for('index'))
+
+
 @app.route("/aboutus")
 def aboutus():
     return render_template('aboutus.html')
@@ -29,6 +37,11 @@ def maps():
         counter += 1
     img_package.sort(key = lambda x: x[-1])
     return render_template('maps.html', data=img_package)
+
+@app.route("/maps")
+def maps():
+    return render_template('maps.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)
