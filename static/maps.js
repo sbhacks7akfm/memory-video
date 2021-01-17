@@ -37,10 +37,22 @@ function movement(image) {
   modal.style.display = "block";
   modalImg.src = img.src;
   captionText.innerHTML = img.alt;
-  if(modalImg.height > window.innerHeight-50 || modalImg.width > window.innerWidth-50) {
-    modalImg.height /= 2;
-    modalImg.width /= 2;
-  }
+  // modalImg.onload = function() {
+  //   if (this.height > this.width) {
+  //     var newHeight = window.innerHeight * 0.75;
+  //     this.width = newHeight / this.height * this.width;
+  //     this.height = newHeight;
+  //   } else {
+  //     var newWidth = window.innerWidth * 0.75;
+  //     this.height = newWidth / this.width * this.height;
+  //     this.width = newWidth;
+  //   }
+    // if(this.height > window.innerHeight-50 || this.width > window.innerWidth-50) {
+    //   this.height *= 0.75;
+    //   this.width *= 0.75;
+    //   console.log(this.height, this.width);
+    // }
+  // }
   setTimeout(() =>{
     modal.style.display = "none";
   }, 3000);

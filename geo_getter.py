@@ -18,8 +18,13 @@ class EXIFExtractor:
         labeled = {}
         image = Image.open(self.filename)
         image.verify()
-        for (key, val) in image._getexif().items():
-            labeled[TAGS.get(key)] = val
+        try:
+            for (key, val) in image._getexif().items():
+                labeled[TAGS.get(key)] = val
+        except AttributeError as e:
+            print("Error at", self.filename)
+            print(e)
+            raise ValueError("No Exif Data found for image")
         dt = labeled["DateTimeOriginal"]
         date, time = dt.split(" ")
         self.dt = datetime.datetime.strptime(dt, '%Y:%m:%d %H:%M:%S')
@@ -76,8 +81,8 @@ class EXIFExtractor:
         img.save("./static/thumbnails/" + save_t)
         return [save_t, img.size[0], img.size[1]]
 
-    def get_coors_n_thumb(self, save_number):
-        return (self.get_coordinates(self.get_geotagging(self.get_exif()[0])), self.get_thumbnail(save_number), self.filename, self.date_time, self.dt)
+    # def get_coors_n_thumb(self, save_number):
+    #     return (self.get_coordinates(self.get_geotagging(self.get_exif()[0])), self.get_thumbnail(save_number), self.filename, self.date_time, self.dt)
 
 if __name__ == "__main__":
     efe = EXIFExtractor("test_files/File_006.jpeg")

@@ -39,8 +39,14 @@ def maps():
     img_package = []
     counter = 0
     for img in images:
-        img_package.append(EXIFExtractor(
-            "./static/original/" + img).get_coors_n_thumb(counter))
+        efe = EXIFExtractor("./static/original/" + img)
+        try:
+            geotagging = efe.get_geotagging(efe.get_exif()[0])
+        except ValueError as e:
+            print(img)
+            print(e)
+            continue
+        img_package.append([efe.get_coordinates(geotagging), efe.get_thumbnail(counter), efe.filename, efe.date_time, efe.dt])
         counter += 1
     img_package.sort(key=lambda x: x[-1])
     return render_template('maps.html', data=img_package)
